@@ -15,4 +15,9 @@ WORKDIR /home/user/
 # We set env, as this gets extracted by Webvm. This is optional.
 ENV HOME="/home/user" TERM="xterm" USER="user" SHELL="/bin/bash" EDITOR="vim" LANG="en_US.UTF-8" LC_ALL="C"
 RUN echo 'root:password' | chpasswd
+
+# Make a custom directory and set it to the user
+RUN mkdir -p /home/user/custom_directory
+COPY local_files/* /home/user/custom_directory/
+
 CMD [ "/bin/bash" ]
